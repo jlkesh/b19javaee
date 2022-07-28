@@ -1,9 +1,6 @@
 package uz.jl.java_ee.dao;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import uz.jl.java_ee.configs.HibernateConfigurer;
 import uz.jl.java_ee.domains.Book;
 
@@ -21,8 +18,7 @@ public class BookDao implements Dao<Book> {
 
     @Override
     public Book create(Book entity) {
-        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = HibernateConfigurer.getSession();
         session.getTransaction().begin();
         session.persist(entity);
         session.getTransaction().commit();
@@ -31,8 +27,7 @@ public class BookDao implements Dao<Book> {
 
     @Override
     public void delete(Long id) {
-        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = HibernateConfigurer.getSession();
         session.getTransaction().begin();
         Book book = session.find(Book.class, id);
         if (Objects.nonNull(book))
@@ -42,9 +37,7 @@ public class BookDao implements Dao<Book> {
 
     @Override
     public List<Book> findAll() {
-        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
+        Session session = HibernateConfigurer.getSession();
         return session.createQuery("select T from Book T order by T.id desc ", Book.class).getResultList();
     }
 
@@ -54,8 +47,7 @@ public class BookDao implements Dao<Book> {
     }
 
     public void updateCoverId(long bookId, Long coverId) {
-        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = HibernateConfigurer.getSession();
         session.getTransaction().begin();
         session.createNativeQuery("update book set cover_id = :cover_id where id = :id returning id", Long.class)
                 .setParameter("id", bookId)

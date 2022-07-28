@@ -110,7 +110,7 @@
                             <p class="card-text">Genre : ${book.genre}</p>
                             <p class="card-text">Language : ${book.language}</p>
                             <p class="card-text">Language : ${book.language}</p>
-                            <a href="/download?filename=${book.file.generatedName}" class="btn btn-outline-primary">Download</a>
+                            <a href="${pageContext.request.contextPath}/download?filename=${book.file.generatedName}" class="btn btn-outline-primary">Download</a>
                         </div>
                     </div>
                 </div>

@@ -1,25 +1,22 @@
 package uz.jl.java_ee.configs;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
-import org.reflections.Reflections;
-import uz.jl.java_ee.dao.BookDao;
 import uz.jl.java_ee.domains.Book;
 import uz.jl.java_ee.domains.Uploads;
 
-import javax.swing.text.html.parser.Entity;
+import java.util.Objects;
 import java.util.Properties;
-
-import static org.reflections.scanners.Scanners.SubTypes;
-import static org.reflections.scanners.Scanners.TypesAnnotated;
 
 public class HibernateConfigurer {
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
+    private static Session openSession;
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -83,5 +80,14 @@ public class HibernateConfigurer {
         if (registry != null) {
             StandardServiceRegistryBuilder.destroy(registry);
         }
+    }
+
+    public static Session getSession() {
+        synchronized (HibernateConfigurer.class) {
+            if (Objects.isNull(openSession) || !openSession.isOpen()) {
+                openSession = getSessionFactory().openSession();
+            }
+        }
+        return openSession;
     }
 }

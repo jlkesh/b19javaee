@@ -1,21 +1,16 @@
 package uz.jl.java_ee.servlets.book;
 
-import uz.jl.java_ee.service.BookService;
 import uz.jl.java_ee.container.ApplicationContext;
+import uz.jl.java_ee.service.BookService;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * @author "Elmurodov Javohir"
