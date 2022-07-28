@@ -52,4 +52,15 @@ public class BookDao implements Dao<Book> {
     public Book findOne(Long id) {
         return null;
     }
+
+    public void updateCoverId(long bookId, Long coverId) {
+        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        session.createNativeQuery("update book set cover_id = :cover_id where id = :id returning id", Long.class)
+                .setParameter("id", bookId)
+                .setParameter("cover_id", coverId)
+                .getSingleResultOrNull();
+        session.getTransaction().commit();
+    }
 }

@@ -16,6 +16,7 @@ public class UploadsDTO {
     private String generatedName;
     private String contentType;
     private long size;
+    private long bookId;
 
 
     public static UploadsDTO toDTO(Part part) {

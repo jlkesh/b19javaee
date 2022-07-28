@@ -1,9 +1,6 @@
 package uz.jl.java_ee.domains;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import uz.jl.java_ee.dto.UploadsDTO;
 
@@ -30,6 +27,8 @@ public class Uploads {
     private String generatedName;
     private String contentType;
     private long size;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean template;
 
     public static Uploads toDomain(UploadsDTO dto) {

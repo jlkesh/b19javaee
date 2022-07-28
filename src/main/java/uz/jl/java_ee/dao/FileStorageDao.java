@@ -9,6 +9,7 @@ import uz.jl.java_ee.domains.Book;
 import uz.jl.java_ee.domains.Uploads;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FileStorageDao implements Dao<Uploads> {
 
@@ -35,5 +36,14 @@ public class FileStorageDao implements Dao<Uploads> {
     @Override
     public Uploads findOne(Long id) {
         return null;
+    }
+
+    public Optional<Uploads> getOneTemplateCover() {
+        SessionFactory sessionFactory = HibernateConfigurer.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        return Optional.ofNullable(session
+                .createQuery("select t from Uploads t where t.template", Uploads.class)
+                .getSingleResultOrNull());
     }
 }

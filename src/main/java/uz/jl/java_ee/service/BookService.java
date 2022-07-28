@@ -28,14 +28,14 @@ public class BookService extends Service<BookDao> {
         BookCreateDTO bookDTO = toDTO.apply(req);
         UploadsDTO uploadsDTO = toUploadsDTO.apply(file);
         Book book = toBookDomain.apply(bookDTO);
-        String generatedName = uploadsDTO.getGeneratedName();
-        InputStream is = file.getInputStream();
-
         Uploads uploadedFile = fileStorageService.create(uploadsDTO);
-
+        Uploads templateCover = fileStorageService.getOneTemplateCover();
         book.setFile(uploadedFile);
+        book.setCover(templateCover);
         dao.create(book);
-        fileStorageService.create(is, generatedName);
+        uploadsDTO.setBookId(book.getId());
+        fileStorageService.create(file, uploadsDTO);
+
     }
 
     private static final Function<HttpServletRequest, BookCreateDTO> toDTO = BookCreateDTO::toDTO;

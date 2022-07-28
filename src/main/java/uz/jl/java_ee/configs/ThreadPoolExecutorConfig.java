@@ -14,11 +14,8 @@ public class ThreadPoolExecutorConfig {
         executorService.submit(() -> System.out.println("::::::::::TREAD POOL STARTED::::::::::"));
     }
 
-    public static void execute(Runnable runnable) {
+    public static void submit(Runnable runnable) {
         executorService.submit(runnable);
     }
 
-    public static <T> Future<T> execute(Callable<T> callable) {
-        return executorService.submit(callable);
-    }
 }
