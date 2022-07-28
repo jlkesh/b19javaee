@@ -38,10 +38,8 @@ public class BookService extends Service<BookDao> {
         fileStorageService.create(is, generatedName);
     }
 
-
     private static final Function<HttpServletRequest, BookCreateDTO> toDTO = BookCreateDTO::toDTO;
     private static final Function<BookCreateDTO, Book> toBookDomain = Book::toDomain;
-
     private static final Function<Part, UploadsDTO> toUploadsDTO = UploadsDTO::toDTO;
 
 
