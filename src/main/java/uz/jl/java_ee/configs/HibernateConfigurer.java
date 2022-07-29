@@ -7,6 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
+import uz.jl.java_ee.domains.AuthUser;
 import uz.jl.java_ee.domains.Book;
 import uz.jl.java_ee.domains.Uploads;
 
@@ -59,6 +60,7 @@ public class HibernateConfigurer {
 //                        .forEach(sources::addAnnotatedClass);
                 sources.addAnnotatedClass(Book.class);
                 sources.addAnnotatedClass(Uploads.class);
+                sources.addAnnotatedClass(AuthUser.class);
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();

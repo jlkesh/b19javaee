@@ -34,7 +34,6 @@ public class BookService extends Service<BookDao> {
         dao.create(book);
         uploadsDTO.setBookId(book.getId());
         fileStorageService.create(file, uploadsDTO);
-
     }
 
     private static final Function<HttpServletRequest, BookCreateDTO> toDTO = BookCreateDTO::toDTO;

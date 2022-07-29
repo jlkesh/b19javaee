@@ -8,6 +8,7 @@ public class ThreadPoolExecutorConfig {
     private static final ExecutorService executorService =
             Executors.newFixedThreadPool(10);
 
+
     public static void run() {
         executorService.submit(() -> System.out.println("::::::::::TREAD POOL STARTED::::::::::"));
     }

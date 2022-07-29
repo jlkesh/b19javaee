@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include page="fragments/head.jsp" />
+    <jsp:include page="./fragments/head.jsp" />
 </head>
 <body>
-<jsp:include page="fragments/navbar.jsp"/>
-<jsp:include page="fragments/js.jsp"  />
+<jsp:include page="./fragments/navbar.jsp"/>
+<jsp:include page="./fragments/js.jsp"  />
 </body>
 </html>

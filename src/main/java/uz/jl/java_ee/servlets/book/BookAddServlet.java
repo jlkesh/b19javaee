@@ -31,8 +31,6 @@ public class BookAddServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//        session.removeAttribute("userId");
         bookService.create(req);
         resp.sendRedirect("/books");
     }

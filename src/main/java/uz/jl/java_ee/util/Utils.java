@@ -1,6 +1,7 @@
 package uz.jl.java_ee.util;
 
 import lombok.NonNull;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * @author "Elmurodov Javohir"
@@ -37,4 +38,15 @@ public class Utils {
     private static String generateSerialId() {
         return "" + System.currentTimeMillis();
     }
+
+
+    public static String encodePassword(@NonNull final String plainPassword) {
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
+    }
+
+    public static boolean matchPassword(@NonNull final String plainPassword, @NonNull final String encodedPassword) {
+        return BCrypt.checkpw(plainPassword, encodedPassword);
+    }
+
+
 }
